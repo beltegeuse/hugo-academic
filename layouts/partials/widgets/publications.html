@@ -24,12 +24,18 @@
     {{ partial "publication_li_detailed" . }}
     {{ end }}
     {{ else }}
-    <ul class="fa-ul">
-      {{ range first $page.Params.count (where $.Data.Pages "Type" "publication") }}
-      {{ partial "publication_li_simple" . }}
-      {{ end }}
-    </ul>
-    {{ end }}
+	<!-- No support of page, need to check that -->        
+	{{ range ((where $.Data.Pages "Type" "publication").GroupByDate "2006") }}
+	<h2>{{ .Key }}</h2>
+
+	<ul class="fa-ul">
+	{{ range .Pages }}
+	{{ partial "publication_li_simple" . }}
+	{{ end }}
+	</ul>
+	{{ end }} 
+   {{ end }}
+    
 
   </div>
 </div>
