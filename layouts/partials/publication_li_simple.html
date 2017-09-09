@@ -1,5 +1,13 @@
 <li itemscope itemtype="http://schema.org/CreativeWork">
-  <i class="fa-li fa fa-file-text-o pub-icon" aria-hidden="true"></i>
+  <!--<i class="fa-li fa fa-file-text-o pub-icon" aria-hidden="true"></i>-->
+  <div class="col-xs-12 col-md-2">
+        {{ if .Params.image_preview }}
+	<a href="{{ .Permalink }}">  	
+	<img class="pub-repr-img pub-img-rounded" src="{{ "/img/" | relURL }}{{ .Params.image_preview }}" itemprop="image"/>
+	</a>
+	{{ end }}
+  </div>
+  <div class="col-xs-12 col-md-10">
   <span itemprop="name">{{ .Title }}</span>
   <div class="pub-authors" itemprop="author" style="color: #3170A5">
      {{ $len := (add (len .Params.authors) -2) }}
@@ -32,4 +40,5 @@
   </div>
 
   <p>{{ partial "publication_links" (dict "content" . "is_list" 1) }}</p>
+  </div>
 </li>
